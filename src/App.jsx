@@ -1,28 +1,33 @@
-import { useState } from 'react'
+import Layout from './components/Layout'
+import Homepage from './components/Homepage'
+import { ServicesPage, PortfolioPage, AboutPage, ContactPage, BlogPage } from './components/Pages'
+import { Routes, Route } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
-    </div>
+    <Layout>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+      </Routes>
+
+      {/* Floating WhatsApp */}
+      <a
+        href="https://wa.me/15551234567"
+        target="_blank"
+        className="fixed bottom-6 right-6 inline-flex items-center justify-center h-12 w-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg"
+        aria-label="WhatsApp"
+      >WA</a>
+
+      {/* Global CTA */}
+      <a
+        href="/contact"
+        className="fixed bottom-6 left-6 inline-flex items-center justify-center rounded-md bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-semibold shadow-lg"
+      >Get a Free Quote</a>
+    </Layout>
   )
 }
-
-export default App
